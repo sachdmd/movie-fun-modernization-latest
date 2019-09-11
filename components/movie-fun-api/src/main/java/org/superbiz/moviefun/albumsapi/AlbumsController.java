@@ -1,4 +1,4 @@
-package org.superbiz.moviefun.albums;
+package org.superbiz.moviefun.albumsapi;
 
 import org.apache.tika.io.IOUtils;
 import org.slf4j.Logger;
@@ -25,26 +25,29 @@ import static java.lang.String.format;
 public class AlbumsController {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
-    private final AlbumsRepository albumsRepository;
+    private final AlbumInfo albumsInfo;
     private final BlobStore blobStore;
+    AlbumsClient albumbsClient;
 
-
-    public AlbumsController(AlbumsRepository albumsRepository, BlobStore blobStore) {
-        this.albumsRepository = albumsRepository;
+    public AlbumsController(AlbumInfo albumsInfo, BlobStore blobStore) {
+        this.albumsInfo = albumsInfo;
         this.blobStore = blobStore;
     }
 
-
+    public AlbumsController(AlbumsClient albumbsClient) {
+        this.albumbsClient = albumbsClient;
+    }
 
     @GetMapping
     public String index(Map<String, Object> model) {
-        model.put("albums", albumsRepository.getAlbums());
+        model.put("albums", albumsInfo.getAlbums());
+        albumbsClient.
         return "albums";
     }
 
-    @GetMapping("/{albumId}")
+   /* @GetMapping("/{albumId}")
     public String details(@PathVariable long albumId, Map<String, Object> model) {
-        model.put("album", albumsRepository.find(albumId));
+        model.put("album", albumsBean.find(albumId));
         return "albumDetails";
     }
 
@@ -98,5 +101,5 @@ public class AlbumsController {
 
     private String getCoverBlobName(@PathVariable long albumId) {
         return format("covers/%d", albumId);
-    }
+    }*/
 }
