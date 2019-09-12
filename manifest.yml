@@ -8,13 +8,13 @@ applications:
   - album-database
   - photo-storage
   routes:
-  - route: album-service-DT.apps.pikes.pal.pivotal.io
+  - route: album-service-DT.apps.evans.pal.pivotal.io
 - name: movie-service
   path: applications/movie-service/build/libs/movie-service-1.1.0-SNAPSHOT.jar
   services:
   - movie-database
   routes:
-  - route: movie-service-DT.apps.pikes.pal.pivotal.io
+  - route: movie-service-DT.apps.evans.pal.pivotal.io
 - name: movie-fun-app
   path: applications/movie-fun-app/build/libs/movie-fun-app-1.1.0-SNAPSHOT.war
   services:
